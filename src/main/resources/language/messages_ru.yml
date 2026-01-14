@@ -1,0 +1,5 @@
+combat-start: "&c&lВЫ В БОЮ! &7Не выходите, иначе умрете."
+combat-end: "&a&lБОЙ ОКОНЧЕН! &7Теперь вы в безопасности."
+command-blocked: "&cВы не можете использовать эту команду во время боя!"
+bossbar-title: "&c&lБой: &e{time} &cсек"
+actionbar-message: "&c&lБой: &e{time} &cсек"
