@@ -1,5 +1,0 @@
-combat-start: "&c&lSAVAŞA GİRDİN! &7Çıkarsan ölürsün."
-combat-end: "&a&lSAVAŞ BİTTİ! &7Artık güvendesin."
-command-blocked: "&cBu komutu savaş sırasında kullanamazsın!"
-bossbar-title: "&c&lSavaş: &e{time} &csn"
-actionbar-message: "&c&lSavaş: &e{time} &csn"
