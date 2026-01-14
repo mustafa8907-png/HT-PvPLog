@@ -1,0 +1,5 @@
+combat-start: "&c&lIN COMBAT! &7Don't log out or you will die."
+combat-end: "&a&lCOMBAT ENDED! &7You are safe now."
+command-blocked: "&cYou cannot use this command during combat!"
+bossbar-title: "&c&lCombat: &e{time} &cs"
+actionbar-message: "&c&lCombat: &e{time} &cs"
