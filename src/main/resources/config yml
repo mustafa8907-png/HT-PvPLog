@@ -10,6 +10,8 @@
 cooldown: 15
 
 # Death Upon Exiting the Game
+# This could have negative consequences 
+# for players experiencing technical problems. 
 quit-the-lose: false
 
 # Visual Settings
