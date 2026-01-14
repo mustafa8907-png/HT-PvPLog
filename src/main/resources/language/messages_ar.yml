@@ -1,0 +1,5 @@
+combat-start: "&c&lأنت في قتال! &7لا تخرج وإلا ستموت."
+combat-end: "&a&lانتهى القتال! &7أنت الآن في أمان."
+command-blocked: "&cلا يمكنك استخدام هذا الأمر أثناء القتال!"
+bossbar-title: "&c&lقتال: &e{time} &cثانية"
+actionbar-message: "&c&lقتال: &e{time} &cثانية"
