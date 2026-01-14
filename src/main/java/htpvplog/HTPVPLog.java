@@ -1,5 +1,7 @@
 package htpvplog;
 
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -16,17 +18,20 @@ public class HTPVPLog extends JavaPlugin {
     public void onEnable() {
         instance = this;
 
-        // Config Yükle
+        // 1. Log: Enabling (Green)
+        Bukkit.getConsoleSender().sendMessage(ChatColor.GREEN + "========================================");
+        Bukkit.getConsoleSender().sendMessage(ChatColor.GREEN + "  HT-PVPLog v" + getDescription().getVersion() + " by mustafa8907");
+        Bukkit.getConsoleSender().sendMessage(ChatColor.GREEN + "  Status: ACTIVATED SUCCESSFULLY");
+        Bukkit.getConsoleSender().sendMessage(ChatColor.GREEN + "========================================");
+
+        // Config ve Dil Dosyaları
         saveDefaultConfig();
+        prepareLanguageFiles();
         loadLanguage();
 
-        // Manager Başlat
+        // Manager ve Eventler
         this.combatManager = new CombatManager(this);
-
-        // Listener Kayıt
         getServer().getPluginManager().registerEvents(new EventListeners(this), this);
-
-        getLogger().info("HT-PVPLog (mustafa8907) başarıyla aktif edildi!");
     }
 
     @Override
@@ -34,35 +39,44 @@ public class HTPVPLog extends JavaPlugin {
         if (combatManager != null) {
             combatManager.cleanup();
         }
+
+        // 2. Log: Disabling (Red)
+        Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "========================================");
+        Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "  HT-PVPLog v" + getDescription().getVersion());
+        Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "  Status: DEACTIVATED / DISABLING");
+        Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "========================================");
     }
 
-    public static HTPVPLog getInstance() {
-        return instance;
-    }
+    private void prepareLanguageFiles() {
+        String[] languages = {"en", "ru", "ar", "es", "pt", "ja", "de", "fr"};
+        File langFolder = new File(getDataFolder(), "language");
+        if (!langFolder.exists()) langFolder.mkdirs();
 
-    public CombatManager getCombatManager() {
-        return combatManager;
+        for (String lang : languages) {
+            String fileName = "language/messages_" + lang + ".yml";
+            File file = new File(getDataFolder(), fileName);
+            if (!file.exists()) {
+                saveResource(fileName, false);
+            }
+        }
     }
 
     public void loadLanguage() {
-        File langFolder = new File(getDataFolder(), "language");
-        if (!langFolder.exists()) {
-            langFolder.mkdirs();
-        }
-
         String langFileName = getConfig().getString("language-file", "messages_en.yml");
-        File langFile = new File(langFolder, langFileName);
+        File langFile = new File(getDataFolder(), "language/" + langFileName);
 
         if (!langFile.exists()) {
-            saveResource("language/" + langFileName, false);
+            langFile = new File(getDataFolder(), "language/messages_en.yml");
         }
-
         langConfig = YamlConfiguration.loadConfiguration(langFile);
     }
 
     public String getLangMessage(String path) {
         if (langConfig == null) return path;
         String msg = langConfig.getString(path);
-        return msg != null ? msg : path;
+        return msg != null ? ColorUtils.colorize(msg) : path;
     }
-    }
+
+    public static HTPVPLog getInstance() { return instance; }
+    public CombatManager getCombatManager() { return combatManager; }
+}
