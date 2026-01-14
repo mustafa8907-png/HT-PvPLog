@@ -1,0 +1,6 @@
+name: HT-PVPLog
+version: 1.0
+main: htpvplog.HTPVPLog
+api-version: 1.13
+author: mustafa8907
+description: Profesyonel PVP Log eklentisi.
