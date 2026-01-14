@@ -1,0 +1,5 @@
+combat-start: "&c&l戦闘開始！ &7ログアウトすると死亡します。"
+combat-end: "&a&l戦闘終了！ &7もう安全です。"
+command-blocked: "&c戦闘中にこのコマンドを使用することはできません！"
+bossbar-title: "&c&l戦闘中: &e{time} &c秒"
+actionbar-message: "&c&l戦闘中: &e{time} &c秒"
