@@ -1,0 +1,5 @@
+combat-start: "&c&lIM KAMPF! &7Verlasse das Spiel nicht, sonst stirbst du."
+combat-end: "&a&lKAMPF BEENDET! &7Du bist jetzt in Sicherheit."
+command-blocked: "&cDu kannst diesen Befehl während des Kampfes nicht verwenden!"
+bossbar-title: "&c&lKampf: &e{time} &cs"
+actionbar-message: "&c&lKampf: &e{time} &cs"
