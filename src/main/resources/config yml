@@ -1,25 +1,30 @@
-# HT-PVPLog Configuration
-# Author: mustafa8907
+# ______________________________________
+#  HT-PVPLog Configuration
+#  Author: mustafa8907
+#  GitHub (Open Source Code)
+# 
+#  Full Customizable Plugin
+# ______________________________________
 
-# Savaş süresi (Saniye cinsinden)
+# Combat Duration
 cooldown: 15
 
-# Oyuncu savaştayken oyundan çıkarsa ölsün mü?
+# Death Upon Exiting the Game
 quit-the-lose: false
 
-# Görsel Ayarlar
+# Visual Settings
 settings:
   actionbar:
     enabled: true
-    # Actionbar rengini dil dosyasındaki mesajda belirtebilirsiniz.
+
   bossbar:
     enabled: false
-    # BossBar Renkleri: BLUE, GREEN, PINK, PURPLE, RED, WHITE, YELLOW
+    # BossBar Color: BLUE, GREEN, PINK, PURPLE, RED, WHITE, YELLOW
     color: RED
-    # BossBar Stilleri: SOLID, SEGMENTED_6, SEGMENTED_10, SEGMENTED_12, SEGMENTED_20
+    # BossBar Style: SOLID, SEGMENTED_6, SEGMENTED_10, SEGMENTED_12, SEGMENTED_20
     style: SOLID
 
-# Yasaklı Komutlar (Whitelist mantığı yoktur, sadece blacklist)
+# Blacklist Commands
 blacklist-commands:
   - home
   - warp
@@ -31,5 +36,5 @@ blacklist-commands:
   - sethome
   - delhome
 
-# Kullanılacak dil dosyası (language klasörü içindeki dosya adı)
+# language file (file name inside the languages folder)
 language-file: messages_en.yml
