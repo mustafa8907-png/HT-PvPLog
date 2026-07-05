@@ -22,17 +22,14 @@ public class EventListeners implements Listener {
 
     @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
     public void onHit(EntityDamageByEntityEvent event) {
-        // Sadece oyuncu hasar alırsa
         if (!(event.getEntity() instanceof Player)) return;
 
         Player victim = (Player) event.getEntity();
         Player attacker = null;
 
-        // Vuran oyuncu mu?
         if (event.getDamager() instanceof Player) {
             attacker = (Player) event.getDamager();
         } 
-        // Vuran ok/yay vb ise ve atan oyuncu ise?
         else if (event.getDamager() instanceof Projectile) {
             Projectile proj = (Projectile) event.getDamager();
             if (proj.getShooter() instanceof Player) {
@@ -40,7 +37,6 @@ public class EventListeners implements Listener {
             }
         }
 
-        // Eğer saldırgan bir oyuncuysa ve kendisine vurmuyorsa savaşı başlat
         if (attacker != null && !attacker.equals(victim)) {
             plugin.getCombatManager().tagPlayer(victim);
             plugin.getCombatManager().tagPlayer(attacker);
@@ -51,8 +47,8 @@ public class EventListeners implements Listener {
     public void onCommand(PlayerCommandPreprocessEvent event) {
         if (plugin.getCombatManager().isInCombat(event.getPlayer())) {
             List<String> blacklist = plugin.getConfig().getStringList("blacklist-commands");
-            String message = event.getMessage().toLowerCase(); // /spawn
-            String command = message.split(" ")[0].substring(1); // spawn
+            String message = event.getMessage().toLowerCase(); 
+            String command = message.split(" ")[0].substring(1); 
 
             if (blacklist.contains(command)) {
                 event.setCancelled(true);
@@ -68,7 +64,6 @@ public class EventListeners implements Listener {
             if (plugin.getConfig().getBoolean("quit-the-lose")) {
                 player.setHealth(0.0);
             }
-            // Oyuncu çıktığı için takip listesinden ve bardan hemen sil
             plugin.getCombatManager().removePlayerImmediately(player);
         }
     }
@@ -76,7 +71,6 @@ public class EventListeners implements Listener {
     @EventHandler
     public void onDeath(PlayerDeathEvent event) {
         Player player = event.getEntity();
-        // Oyuncu öldüyse savaşı bitir
         if (plugin.getCombatManager().isInCombat(player)) {
             plugin.getCombatManager().untagPlayer(player);
         }
