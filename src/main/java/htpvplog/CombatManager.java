@@ -35,7 +35,6 @@ public class CombatManager {
         if (!wasInCombat) {
             player.sendMessage(ColorUtils.colorize(plugin.getLangMessage("combat-start")));
             
-            // BossBar oluştur
             if (plugin.getConfig().getBoolean("settings.bossbar.enabled")) {
                 createBossBar(player);
             }
@@ -59,7 +58,6 @@ public class CombatManager {
         return (combatTimes.get(player.getUniqueId()) - System.currentTimeMillis()) / 1000L;
     }
     
-    // Milisaniye hassasiyeti için (Bossbar progress bar doluluğu için)
     private double getProgress(Player player) {
         if (!isInCombat(player)) return 0.0;
         long remainingMillis = combatTimes.get(player.getUniqueId()) - System.currentTimeMillis();
@@ -121,12 +119,11 @@ public class CombatManager {
 
                     if (player == null) {
                         iterator.remove();
-                        activeBossBars.remove(uuid); // Player yoksa bardan da sil
+                        activeBossBars.remove(uuid);
                         continue;
                     }
 
                     if (System.currentTimeMillis() > endTime) {
-                        // Süre bitti
                         iterator.remove();
                         player.sendMessage(ColorUtils.colorize(plugin.getLangMessage("combat-end")));
                         removeBossBar(player);
